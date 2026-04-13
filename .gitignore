@@ -1,0 +1,5 @@
+API/__pycache__/
+API/**/__pycache__/
+API/.venv/
+UI/node_modules/
+.env.local
