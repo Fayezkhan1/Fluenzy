@@ -1,0 +1,300 @@
+.home-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 80px 48px;
+  position: relative;
+  z-index: 1;
+}
+
+.home-hero {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 28px;
+  margin-bottom: 80px;
+  animation: fadeInUp 0.7s var(--dramatic) both;
+}
+
+.home-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--ruby-soft);
+  backdrop-filter: blur(12px);
+  color: var(--ruby);
+  font-size: 0.76rem;
+  font-weight: 600;
+  padding: 8px 22px;
+  border-radius: var(--radius-pill);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  border: 1px solid rgba(231, 76, 90, 0.15);
+  animation: breathe 5s ease-in-out infinite;
+}
+
+.home-title {
+  font-size: clamp(3rem, 5.5vw, 4.8rem);
+  font-weight: 800;
+  color: var(--text-bright);
+  line-height: 1.03;
+  letter-spacing: -2.5px;
+  max-width: 720px;
+}
+
+.home-title span {
+  background: linear-gradient(135deg, var(--ruby), var(--amber), var(--ruby));
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmerGlow 4s ease-in-out infinite;
+}
+
+.home-description {
+  font-size: 1.18rem;
+  color: var(--text-secondary);
+  line-height: 1.8;
+  max-width: 560px;
+}
+
+.home-cta {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, var(--ruby), var(--ruby-deep));
+  color: white;
+  border: none;
+  padding: 16px 38px;
+  border-radius: var(--radius-pill);
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: 'Outfit', 'Inter', sans-serif;
+  cursor: pointer;
+  transition: all 0.4s var(--spring);
+  box-shadow:
+    var(--shadow-emboss),
+    0 4px 28px var(--ruby-glow),
+    0 0 60px rgba(231, 76, 90, 0.08);
+  letter-spacing: 0.5px;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.btn-primary:hover::after {
+  left: 100%;
+}
+
+.btn-primary:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow:
+    var(--shadow-emboss),
+    0 12px 44px var(--ruby-glow),
+    0 0 100px rgba(231, 76, 90, 0.12);
+}
+
+.btn-primary:active {
+  transform: translateY(1px) scale(0.98);
+  box-shadow: var(--shadow-deboss);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--surface-glass);
+  backdrop-filter: blur(12px);
+  color: var(--text-primary);
+  border: 1.5px solid var(--surface-glass-border);
+  padding: 15px 32px;
+  border-radius: var(--radius-pill);
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: 'Outfit', 'Inter', sans-serif;
+  cursor: pointer;
+  transition: all 0.4s var(--spring);
+  box-shadow: var(--shadow-glass);
+}
+
+.btn-secondary:hover {
+  background: var(--surface-glass-hover);
+  border-color: var(--surface-glass-border-hover);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-glass-hover);
+}
+
+/* ============ Feature Cards — FROSTED GLASS + LEATHER ============ */
+.home-features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+}
+
+.feature-card {
+  background: var(--surface-glass);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--surface-glass-border);
+  border-radius: var(--radius-lg);
+  padding: 36px;
+  transition: all 0.5s var(--spring);
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-glass);
+  cursor: default;
+  animation: fadeInUp 0.7s var(--dramatic) both;
+}
+
+.feature-card:nth-child(1) {
+  animation-delay: 0.08s;
+}
+
+.feature-card:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.feature-card:nth-child(3) {
+  animation-delay: 0.32s;
+}
+
+/* Ambient glow per card */
+.feature-card::before {
+  content: '';
+  position: absolute;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  filter: blur(60px);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+  top: -50px;
+  right: -50px;
+}
+
+.feature-card:hover::before {
+  opacity: 1;
+}
+
+/* Stitching */
+.feature-card::after {
+  content: '';
+  position: absolute;
+  inset: 8px;
+  border: 1px dashed rgba(0, 0, 0, 0.06);
+  border-radius: calc(var(--radius-lg) - 8px);
+  pointer-events: none;
+  transition: border-color 0.4s ease;
+}
+
+.feature-card:hover::after {
+  border-color: rgba(0, 0, 0, 0.12);
+}
+
+/* Top highlight */
+.feature-card>.feature-icon~* {
+  position: relative;
+  z-index: 2;
+}
+
+/* Ruby card */
+.feature-card:nth-child(1) {
+  border-color: rgba(231, 76, 90, 0.1);
+}
+
+.feature-card:nth-child(1)::before {
+  background: rgba(231, 76, 90, 0.18);
+}
+
+.feature-card:nth-child(1):hover {
+  border-color: rgba(231, 76, 90, 0.2);
+  box-shadow: var(--shadow-glass-hover), var(--shadow-glow-ruby);
+  transform: translateY(-10px) scale(1.01);
+}
+
+/* Sage card */
+.feature-card:nth-child(2) {
+  border-color: rgba(126, 200, 150, 0.08);
+}
+
+.feature-card:nth-child(2)::before {
+  background: rgba(126, 200, 150, 0.15);
+}
+
+.feature-card:nth-child(2):hover {
+  border-color: rgba(126, 200, 150, 0.18);
+  box-shadow: var(--shadow-glass-hover), var(--shadow-glow-sage);
+  transform: translateY(-10px) scale(1.01);
+}
+
+/* Amber card */
+.feature-card:nth-child(3) {
+  border-color: rgba(240, 160, 80, 0.08);
+}
+
+.feature-card:nth-child(3)::before {
+  background: rgba(240, 160, 80, 0.18);
+}
+
+.feature-card:nth-child(3):hover {
+  border-color: rgba(240, 160, 80, 0.18);
+  box-shadow: var(--shadow-glass-hover), var(--shadow-glow-amber);
+  transform: translateY(-10px) scale(1.01);
+}
+
+.feature-icon {
+  width: 58px;
+  height: 58px;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(8px);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.7rem;
+  margin-bottom: 20px;
+  box-shadow: var(--shadow-deboss);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  transition: all 0.5s var(--spring);
+  position: relative;
+  z-index: 2;
+}
+
+.feature-card:hover .feature-icon {
+  transform: scale(1.15) translateY(-6px);
+  box-shadow: var(--shadow-emboss), 0 8px 28px rgba(92, 77, 68, 0.2);
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.feature-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-bright);
+  margin-bottom: 10px;
+  position: relative;
+  z-index: 2;
+}
+
+.feature-desc {
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  position: relative;
+  z-index: 2;
+}

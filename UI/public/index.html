@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Lūmi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet" />
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Outfit', 'Inter', system-ui, sans-serif;
+      background: #f8f4f0;
+      color: #2c2420;
+      overflow-x: hidden;
+    }
+
+    :root {
+      /* === GLASSMORPHISM + SKEUOMORPHISM HYBRID (LIGHT THEME) === */
+
+      /* Primary warm palette — vivid & rich */
+      --ruby: #d93846;
+      /* slightly lighter for contrast on light bg */
+      --ruby-glow: rgba(217, 56, 70, 0.25);
+      --ruby-deep: #a82a35;
+      --ruby-soft: rgba(217, 56, 70, 0.08);
+
+      --amber: #e68a30;
+      --amber-glow: rgba(230, 138, 48, 0.2);
+      --amber-deep: #b36a22;
+
+      --sage: #65b881;
+      --sage-glow: rgba(101, 184, 129, 0.18);
+      --sage-deep: #3c8253;
+      --sage-soft: rgba(101, 184, 129, 0.1);
+
+      --lavender: #a186d6;
+      --lavender-glow: rgba(161, 134, 214, 0.15);
+
+      /* Surface system — light airy warm cream with white glass */
+      --bg: #f8f4f0;
+      --bg-gradient: linear-gradient(160deg, #ffffff 0%, #f8f4f0 30%, #f0e9e4 60%, #f8f4f0 100%);
+      --surface-glass: rgba(255, 255, 255, 0.5);
+      --surface-glass-hover: rgba(255, 255, 255, 0.7);
+      --surface-glass-border: rgba(255, 255, 255, 0.8);
+      --surface-glass-border-hover: rgba(255, 255, 255, 1);
+      --surface-elevated: rgba(255, 255, 255, 0.9);
+
+      /* Text — high contrast for readability on light */
+      --text-bright: #120e0c;
+      --text-primary: #2c2420;
+      --text-secondary: #5c4d44;
+      --text-muted: #8c7a6e;
+      --text-accent: #c0651a;
+
+      /* Glass Effects */
+      --glass-blur: blur(24px) saturate(150%);
+      --glass-blur-heavy: blur(40px) saturate(200%);
+
+      /* Shadows — softer, colorful shadows for light theme */
+      --shadow-glass: 0 8px 32px rgba(92, 77, 68, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+      --shadow-glass-hover: 0 16px 48px rgba(92, 77, 68, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+      --shadow-emboss: inset 0 1px 0 rgba(255, 255, 255, 1), 0 2px 4px rgba(92, 77, 68, 0.15);
+      --shadow-deboss: inset 0 2px 8px rgba(92, 77, 68, 0.2), inset 0 -1px 0 rgba(255, 255, 255, 1);
+      --shadow-glow-ruby: 0 0 40px rgba(217, 56, 70, 0.15), 0 0 100px rgba(217, 56, 70, 0.06);
+      --shadow-glow-amber: 0 0 40px rgba(230, 138, 48, 0.12), 0 0 100px rgba(230, 138, 48, 0.05);
+      --shadow-glow-sage: 0 0 40px rgba(101, 184, 129, 0.12), 0 0 100px rgba(101, 184, 129, 0.05);
+
+      /* Radii */
+      --radius-sm: 14px;
+      --radius: 22px;
+      --radius-lg: 28px;
+      --radius-xl: 36px;
+      --radius-pill: 999px;
+
+      /* Transitions */
+      --spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+      --smooth: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      --dramatic: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* === RICH ANIMATED BACKGROUND === */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 50% at 15% 85%, rgba(231, 76, 90, 0.1) 0%, transparent 55%),
+        radial-gradient(ellipse 60% 70% at 85% 15%, rgba(240, 160, 80, 0.08) 0%, transparent 55%),
+        radial-gradient(ellipse 50% 50% at 50% 50%, rgba(126, 200, 150, 0.04) 0%, transparent 55%),
+        radial-gradient(ellipse 90% 40% at 70% 80%, rgba(184, 160, 224, 0.05) 0%, transparent 55%);
+      pointer-events: none;
+      z-index: 0;
+      animation: ambientPulse 15s ease-in-out infinite alternate;
+    }
+
+    @keyframes ambientPulse {
+      0% {
+        opacity: 0.7;
+        transform: scale(1) rotate(0deg);
+      }
+
+      50% {
+        opacity: 1;
+        transform: scale(1.03) rotate(0.5deg);
+      }
+
+      100% {
+        opacity: 0.8;
+        transform: scale(0.98) rotate(-0.3deg);
+      }
+    }
+
+    /* Film grain — subtle texture */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+      background-size: 256px 256px;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.15;
+      mix-blend-mode: overlay;
+    }
+
+    /* === ANIMATION KEYFRAMES === */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(36px) scale(0.97);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    @keyframes fadeInScale {
+      from {
+        opacity: 0;
+        transform: scale(0.92);
+        filter: blur(4px);
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1);
+        filter: blur(0);
+      }
+    }
+
+    @keyframes slideInLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-50px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes slideInRight {
+      from {
+        opacity: 0;
+        transform: translateX(50px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes breathe {
+
+      0%,
+      100% {
+        transform: scale(1);
+        box-shadow: 0 0 20px var(--ruby-glow);
+      }
+
+      50% {
+        transform: scale(1.03);
+        box-shadow: 0 0 30px var(--ruby-glow);
+      }
+    }
+
+    @keyframes shimmerGlow {
+      0% {
+        background-position: -200% center;
+      }
+
+      100% {
+        background-position: 200% center;
+      }
+    }
+
+    @keyframes floatSlow {
+
+      0%,
+      100% {
+        transform: translateY(0px) scale(1);
+      }
+
+      50% {
+        transform: translateY(-12px) scale(1.02);
+      }
+    }
+
+    @keyframes borderGlow {
+
+      0%,
+      100% {
+        border-color: rgba(255, 255, 255, 0.06);
+      }
+
+      50% {
+        border-color: rgba(255, 255, 255, 0.12);
+      }
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* Loading spinner */
+    .spinner {
+      width: 44px;
+      height: 44px;
+      border: 3px solid rgba(255, 255, 255, 0.08);
+      border-top-color: var(--ruby);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      box-shadow: 0 0 24px var(--ruby-glow);
+    }
+  </style>
+</head>
+
+<body>
+  <div id="root"></div>
+</body>
+
+</html>

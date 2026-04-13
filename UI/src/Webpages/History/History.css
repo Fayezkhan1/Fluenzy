@@ -1,0 +1,329 @@
+.history-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px 48px;
+  position: relative;
+  z-index: 1;
+}
+
+.history-header {
+  text-align: center;
+  margin-bottom: 32px;
+  animation: fadeInUp 0.5s var(--dramatic) both;
+}
+
+.history-title {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--text-bright);
+  letter-spacing: -1.5px;
+  margin-bottom: 8px;
+}
+
+.history-subtitle {
+  font-size: 1rem;
+  color: var(--text-secondary);
+}
+
+.history-loading,
+.history-empty {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--text-muted);
+}
+
+.history-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.history-card {
+  background: var(--surface-glass);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--surface-glass-border);
+  border-radius: var(--radius);
+  padding: 24px 26px;
+  cursor: pointer;
+  transition: all 0.4s var(--spring);
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-glass);
+  animation: fadeInUp 0.5s var(--dramatic) both;
+}
+
+.history-card::before {
+  content: '';
+  position: absolute;
+  inset: 6px;
+  border: 1px dashed rgba(0, 0, 0, 0.06);
+  border-radius: calc(var(--radius) - 6px);
+  pointer-events: none;
+}
+
+.history-card::after {
+  content: '';
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: rgba(240, 160, 80, 0.1);
+  filter: blur(50px);
+  top: -60px;
+  right: -60px;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+
+.history-card:hover {
+  transform: translateY(-6px) scale(1.01);
+  box-shadow: var(--shadow-glass-hover), var(--shadow-glow-amber);
+  border-color: rgba(240, 160, 80, 0.12);
+}
+
+.history-card:hover::after {
+  opacity: 1;
+}
+
+.history-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+  position: relative;
+  z-index: 2;
+}
+
+.history-card-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.history-card-number {
+  font-weight: 700;
+  color: var(--text-bright);
+}
+
+.history-card-date {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.history-card-arrow {
+  color: var(--text-muted);
+  font-size: 1rem;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(8px);
+  box-shadow: var(--shadow-deboss);
+  transition: all 0.3s var(--spring);
+}
+
+.history-card:hover .history-card-arrow {
+  transform: translateX(4px);
+  background: var(--ruby-soft);
+  color: var(--ruby);
+  box-shadow: var(--shadow-emboss), 0 0 12px var(--ruby-glow);
+}
+
+.history-card-preview {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  margin: 0;
+  position: relative;
+  z-index: 2;
+}
+
+.history-card-stats {
+  display: flex;
+  gap: 16px;
+  margin-top: 14px;
+  font-size: 0.76rem;
+  color: var(--text-muted);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  position: relative;
+  z-index: 2;
+}
+
+/* Detail view */
+.history-card-content {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px dashed rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.history-line {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 14px 18px;
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(6px);
+}
+
+.history-line.user {
+  background: var(--sage-soft);
+  border-color: rgba(126, 200, 150, 0.08);
+  margin-left: 30px;
+}
+
+.history-line.ai {
+  background: rgba(255, 255, 255, 0.7);
+  margin-right: 30px;
+}
+
+.history-line-role {
+  font-size: 0.66rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  letter-spacing: 0.8px;
+}
+
+.history-line.user .history-line-role {
+  color: var(--sage);
+}
+
+.history-line-text {
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  line-height: 1.5;
+}
+
+.back-button {
+  background: none;
+  border: none;
+  color: var(--amber);
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+  margin-bottom: 16px;
+  font-family: 'Outfit', 'Inter', sans-serif;
+  transition: color 0.2s ease;
+}
+
+.back-button:hover {
+  color: var(--ruby);
+}
+
+.session-summary {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.summary-card {
+  flex: 1;
+  background: var(--surface-glass);
+  backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--surface-glass-border);
+  border-radius: var(--radius);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  box-shadow: var(--shadow-glass);
+  transition: all 0.4s var(--spring);
+}
+
+.summary-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-glass-hover);
+}
+
+.summary-label {
+  font-size: 0.76rem;
+  color: var(--text-muted);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+.summary-value {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--text-bright);
+}
+
+.grammar-section,
+.transcript-section {
+  background: var(--surface-glass);
+  backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--surface-glass-border);
+  border-radius: var(--radius);
+  padding: 24px;
+  margin-bottom: 16px;
+  box-shadow: var(--shadow-glass);
+}
+
+.grammar-title,
+.transcript-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-bright);
+  margin: 0 0 12px 0;
+}
+
+.grammar-content {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  white-space: pre-wrap;
+}
+
+.delete-button {
+  width: 100%;
+  padding: 15px;
+  background: linear-gradient(135deg, var(--ruby), var(--ruby-deep));
+  color: white;
+  border: none;
+  border-radius: var(--radius-pill);
+  font-size: 0.9rem;
+  font-weight: 600;
+  font-family: 'Outfit', 'Inter', sans-serif;
+  cursor: pointer;
+  margin-top: 16px;
+  transition: all 0.4s var(--spring);
+  box-shadow: var(--shadow-emboss), 0 4px 20px var(--ruby-glow);
+  position: relative;
+  overflow: hidden;
+}
+
+.delete-button::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+  transition: left 0.5s ease;
+}
+
+.delete-button:hover::after {
+  left: 100%;
+}
+
+.delete-button:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-emboss), 0 8px 36px var(--ruby-glow);
+}

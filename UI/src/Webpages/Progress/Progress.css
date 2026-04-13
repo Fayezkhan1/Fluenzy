@@ -1,0 +1,292 @@
+.progress-container {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 40px 48px;
+  position: relative;
+  z-index: 1;
+}
+
+.progress-header {
+  text-align: center;
+  margin-bottom: 36px;
+  animation: fadeInUp 0.5s var(--dramatic) both;
+}
+
+.progress-title {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--text-bright);
+  letter-spacing: -1.5px;
+  margin-bottom: 8px;
+}
+
+.progress-subtitle {
+  font-size: 1rem;
+  color: var(--text-secondary);
+}
+
+.progress-loading {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--text-muted);
+}
+
+/* ============ Stat Cards — Glass + Colored Glow ============ */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin-bottom: 28px;
+}
+
+.stat-card {
+  background: var(--surface-glass);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--surface-glass-border);
+  border-radius: var(--radius-lg);
+  padding: 32px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.5s var(--spring);
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-glass);
+  animation: fadeInUp 0.6s var(--dramatic) both;
+}
+
+.stat-card:nth-child(1) {
+  animation-delay: 0.08s;
+}
+
+.stat-card:nth-child(2) {
+  animation-delay: 0.18s;
+}
+
+.stat-card:nth-child(3) {
+  animation-delay: 0.28s;
+}
+
+.stat-card::before {
+  content: '';
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  filter: blur(50px);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  top: -40px;
+  right: -40px;
+}
+
+.stat-card::after {
+  content: '';
+  position: absolute;
+  inset: 6px;
+  border: 1px dashed rgba(0, 0, 0, 0.06);
+  border-radius: calc(var(--radius-lg) - 6px);
+  pointer-events: none;
+}
+
+.stat-card:nth-child(1) {
+  border-color: rgba(231, 76, 90, 0.08);
+}
+
+.stat-card:nth-child(1)::before {
+  background: rgba(231, 76, 90, 0.15);
+}
+
+.stat-card:nth-child(1):hover {
+  border-color: rgba(231, 76, 90, 0.18);
+  box-shadow: var(--shadow-glass-hover), var(--shadow-glow-ruby);
+}
+
+.stat-card:nth-child(2) {
+  border-color: rgba(126, 200, 150, 0.06);
+}
+
+.stat-card:nth-child(2)::before {
+  background: rgba(126, 200, 150, 0.12);
+}
+
+.stat-card:nth-child(2):hover {
+  border-color: rgba(126, 200, 150, 0.15);
+  box-shadow: var(--shadow-glass-hover), var(--shadow-glow-sage);
+}
+
+.stat-card:nth-child(3) {
+  border-color: rgba(240, 160, 80, 0.06);
+}
+
+.stat-card:nth-child(3)::before {
+  background: rgba(240, 160, 80, 0.15);
+}
+
+.stat-card:nth-child(3):hover {
+  border-color: rgba(240, 160, 80, 0.15);
+  box-shadow: var(--shadow-glass-hover), var(--shadow-glow-amber);
+}
+
+.stat-card:hover {
+  transform: translateY(-8px) scale(1.02);
+}
+
+.stat-card:hover::before {
+  opacity: 1;
+}
+
+.stat-icon {
+  font-size: 2rem;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+  transition: transform 0.5s var(--spring);
+  position: relative;
+  z-index: 2;
+}
+
+.stat-card:hover .stat-icon {
+  transform: scale(1.2) translateY(-4px);
+}
+
+.stat-value {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--text-bright);
+  position: relative;
+  z-index: 2;
+}
+
+.stat-label {
+  font-size: 0.76rem;
+  color: var(--text-muted);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  position: relative;
+  z-index: 2;
+}
+
+/* ============ Chart Cards — Glass ============ */
+.chart-card {
+  background: var(--surface-glass);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--surface-glass-border);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  margin-bottom: 24px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-glass);
+  animation: fadeInUp 0.7s var(--dramatic) 0.35s both;
+  transition: all 0.4s ease;
+}
+
+.chart-card:hover {
+  box-shadow: var(--shadow-glass-hover);
+  border-color: var(--surface-glass-border-hover);
+}
+
+.chart-card::after {
+  content: '';
+  position: absolute;
+  inset: 6px;
+  border: 1px dashed rgba(0, 0, 0, 0.06);
+  border-radius: calc(var(--radius-lg) - 6px);
+  pointer-events: none;
+}
+
+.chart-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-bright);
+  margin: 0 0 20px 0;
+  position: relative;
+  z-index: 2;
+}
+
+/* Calendar */
+.calendar-day-labels {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  margin-bottom: 6px;
+  position: relative;
+  z-index: 2;
+}
+
+.calendar-day-label {
+  text-align: center;
+  font-size: 0.68rem;
+  color: var(--text-muted);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+.calendar-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  position: relative;
+  z-index: 2;
+}
+
+.calendar-week {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+}
+
+.calendar-cell {
+  aspect-ratio: 1;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s var(--spring);
+}
+
+.calendar-cell.empty {
+  background: transparent;
+}
+
+.calendar-cell.active {
+  background: var(--sage-soft);
+  border: 1px solid rgba(126, 200, 150, 0.15);
+  box-shadow: 0 0 14px var(--sage-glow);
+  backdrop-filter: blur(4px);
+}
+
+.calendar-cell.inactive {
+  background: rgba(255, 255, 255, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: var(--shadow-deboss);
+}
+
+.calendar-cell:hover {
+  transform: scale(1.12);
+}
+
+.calendar-day-num {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.calendar-cell.active .calendar-day-num {
+  color: var(--sage);
+  font-weight: 700;
+}
+
+@media (max-width: 600px) {
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .progress-container {
+    padding: 24px 20px;
+  }
+}
